@@ -1,0 +1,42 @@
+{
+    "name": "rainwaves/collivery-client-api-v3",
+    "description": "A comprehensive PHP package for seamless integration with the Collivery API, offering robust solutions for managing addresses, contacts, waybills, quotes, and shipment tracking.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Your Name",
+            "email": "your.email@example.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^8.0",
+        "symfony/cache": "^5.2",
+        "guzzlehttp/guzzle": "^7.3",
+        "illuminate/support": "^8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "orchestra/testbench": "^6.20"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rainwaves\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rainwaves\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.x-dev"
+        }
+    }
+}
+
