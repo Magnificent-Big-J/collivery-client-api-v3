@@ -18,12 +18,12 @@ abstract class BaseApi
     /**
      * @var HttpClientInterface
      */
-    protected $httpClient;
+    protected HttpClientInterface $httpClient;
 
     /**
      * @var Auth
      */
-    protected $auth;
+    protected Auth $auth;
 
     /**
      * BaseApi constructor.
@@ -84,6 +84,7 @@ abstract class BaseApi
      * Get the headers required for authentication.
      *
      * @return array
+     * @throws ColliveryException
      */
     protected function getAuthHeaders(): array
     {
