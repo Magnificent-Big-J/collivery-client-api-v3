@@ -89,7 +89,7 @@ abstract class BaseApi
     protected function getAuthHeaders(): array
     {
         return [
-            'Authorization' => 'Bearer ' . $this->auth->getToken(),
+            'api_token' =>  $this->auth->getToken(),
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
             'X-App-Name' => config('collivery.app_name'),
