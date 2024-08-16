@@ -2,7 +2,6 @@
 
 namespace Rainwaves\Api;
 
-use Rainwaves\Helpers\HttpClientInterface;
 use Rainwaves\Exceptions\ColliveryException;
 use Rainwaves\Exceptions\UnauthorizedException;
 use Rainwaves\Exceptions\ForbiddenException;
@@ -12,6 +11,7 @@ use Rainwaves\Exceptions\ServerException;
 use Rainwaves\Exceptions\RateLimitException;
 use Rainwaves\Exceptions\BadRequestException;
 use Rainwaves\Exceptions\ConflictException;
+use Rainwaves\Interfaces\HttpClientInterface;
 
 abstract class BaseApi
 {
