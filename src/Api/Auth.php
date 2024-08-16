@@ -3,27 +3,26 @@
 namespace Rainwaves\Api;
 
 use Rainwaves\Exceptions\ColliveryException;
-use Illuminate\Support\Facades\Cache;
 use Rainwaves\Interfaces\HttpClientInterface;
 
 class Auth
 {
-    /**
-     * @var Auth
-     */
-    private static Auth $instance;
-
     /**
      * @var HttpClientInterface
      */
     protected HttpClientInterface $httpClient;
 
     /**
-     * The token that is used for API authentication.
-     *
      * @var string|null
      */
     protected ?string $token;
+
+    /**
+     * Singleton instance.
+     *
+     * @var Auth|null
+     */
+    protected static ?Auth $instance = null;
 
     /**
      * Auth constructor.
@@ -36,99 +35,50 @@ class Auth
     }
 
     /**
-     * Get the singleton instance of the Auth class.
+     * Get the singleton instance.
      *
      * @param HttpClientInterface $httpClient
      * @return Auth
      */
     public static function getInstance(HttpClientInterface $httpClient): Auth
     {
-        if (null === static::$instance) {
-            static::$instance = new static($httpClient);
+        if (self::$instance === null) {
+            self::$instance = new self($httpClient);
         }
 
-        return static::$instance;
+        return self::$instance;
     }
 
     /**
-     * Retrieve the API token.
+     * Authenticate and retrieve the API token.
      *
+     * @param string $email
+     * @param string $password
      * @return string
      * @throws ColliveryException
      */
-    public function getToken(): string
+    public function login(string $email, string $password): string
     {
-        if ($this->token === null) {
-            $this->token = $this->getCachedToken() ?: $this->authenticate();
+        $response = $this->httpClient->post('/login', [], [
+            'email' => $email,
+            'password' => $password,
+        ]);
+
+        if (!isset($response['token'])) {
+            throw new ColliveryException('Authentication failed: Token not provided');
         }
 
+        $this->token = $response['token'];
         return $this->token;
     }
 
     /**
-     * Authenticate with the API and retrieve a new token.
-     *
-     * @return string
-     * @throws ColliveryException
-     */
-    protected function authenticate(): string
-    {
-        $credentials = [
-            'username' => config('collivery.username'),
-            'password' => config('collivery.password'),
-        ];
-
-        try {
-            $response = $this->httpClient->post('/login', $this->getHeaders(), [], $credentials);
-
-            if ($response['status_code'] === 200 && isset($response['data']['token'])) {
-                $token = $response['data']['token'];
-                $this->cacheToken($token);
-                return $token;
-            }
-
-            throw new ColliveryException("Authentication failed: Invalid response from API");
-        } catch (\Exception $e) {
-            throw new ColliveryException("Authentication failed: " . $e->getMessage(), 0, $e);
-        }
-    }
-
-    /**
-     * Cache the API token.
-     *
-     * @param string $token
-     * @return void
-     */
-    protected function cacheToken(string $token): void
-    {
-        Cache::put('collivery_api_token', $token, now()->addMinutes(30));
-    }
-
-    /**
-     * Retrieve the cached token if available.
+     * Get the current token.
      *
      * @return string|null
      */
-    protected function getCachedToken(): ?string
+    public function getToken(): ?string
     {
-        return Cache::get('collivery_api_token');
-    }
-
-    /**
-     * Get the headers required for authentication including application information.
-     *
-     * @return array
-     */
-    protected function getHeaders(): array
-    {
-        return [
-            'Content-Type' => 'application/json',
-            'Accept' => 'application/json',
-            'X-App-Name' => config('collivery.app_name'),
-            'X-App-Version' => config('collivery.app_version'),
-            'X-App-Host' => config('collivery.app_host'),
-            'X-App-Lang' => config('collivery.app_lang'),
-            'X-App-Url' => config('collivery.app_url'),
-        ];
+        return $this->token;
     }
 }
