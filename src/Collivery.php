@@ -10,6 +10,7 @@ use Rainwaves\Api\LocationType;
 use Rainwaves\Api\ParcelImage;
 use Rainwaves\Api\ParcelType;
 use Rainwaves\Api\PredifinedParcel;
+use Rainwaves\Api\ProofOfDelivery;
 use Rainwaves\Api\ServiceType;
 use Rainwaves\Api\Status;
 use Rainwaves\Api\Suburb;
@@ -181,7 +182,7 @@ class Collivery
         return new ParcelType($this->httpClient, $this->auth);
     }
     /**
-     * Get an instance of the Status service.
+     * Get an instance of the predifinedParcel service.
      *
      * @return PredifinedParcel
      */
@@ -190,6 +191,15 @@ class Collivery
         return new PredifinedParcel($this->httpClient, $this->auth);
     }
 
+    /**
+     * Get an instance of the ProofOfDelivery service.
+     *
+     * @return ProofOfDelivery
+     */
+    public function proofOfDelivery(): ProofOfDelivery
+    {
+        return new ProofOfDelivery($this->httpClient, $this->auth);
+    }
     /**
      * Get an instance of the TermAndCondition service.
      *

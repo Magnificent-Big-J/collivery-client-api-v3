@@ -12,6 +12,7 @@ use Rainwaves\Api\LocationType;
 use Rainwaves\Api\ParcelImage;
 use Rainwaves\Api\ParcelType;
 use Rainwaves\Api\PredifinedParcel;
+use Rainwaves\Api\ProofOfDelivery;
 use Rainwaves\Api\ServiceType;
 use Rainwaves\Api\Status;
 use Rainwaves\Api\StatusTracking;
@@ -109,6 +110,10 @@ class ColliveryServiceProvider extends ServiceProvider
 
         $this->app->singleton(PredifinedParcel::class, function ($app) {
             return $app->make(Collivery::class)->predifinedParcel();
+        });
+
+        $this->app->singleton(ProofOfDelivery::class, function ($app) {
+            return $app->make(Collivery::class)->proofOfDelivery();
         });
 
         $this->app->singleton(TermAndCondition::class, function ($app) {
