@@ -3,6 +3,7 @@
 namespace Rainwaves;
 
 use Rainwaves\Api\Address;
+use Rainwaves\Api\BatteryType;
 use Rainwaves\Api\Contact;
 use Rainwaves\Api\Country;
 use Rainwaves\Api\LocationType;
@@ -62,6 +63,16 @@ class Collivery
     public function address(): Address
     {
         return new Address($this->httpClient, $this->auth);
+    }
+
+    /**
+     * Get an instance of the batteryType service.
+     *
+     * @return batteryType
+     */
+    public function batteryType(): BatteryType
+    {
+        return new BatteryType($this->httpClient, $this->auth);
     }
 
     /**

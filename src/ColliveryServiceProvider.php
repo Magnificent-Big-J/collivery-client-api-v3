@@ -5,6 +5,7 @@ namespace Rainwaves;
 use Illuminate\Support\ServiceProvider;
 use Rainwaves\Api\Address;
 use Rainwaves\Api\Auth;
+use Rainwaves\Api\BatteryType;
 use Rainwaves\Api\Contact;
 use Rainwaves\Api\Country;
 use Rainwaves\Api\LocationType;
@@ -50,18 +51,21 @@ class ColliveryServiceProvider extends ServiceProvider
             return new Collivery($httpClient, $config);
         });
 
-        $this->app->singleton(Country::class, function ($app) {
-            return $app->make(Collivery::class)->country();
-        });
-
         $this->app->singleton(Address::class, function ($app) {
             return $app->make(Collivery::class)->address();
+        });
+
+        $this->app->singleton(BatteryType::class, function ($app) {
+            return $app->make(Collivery::class)->batteryType();
         });
 
         $this->app->singleton(Contact::class, function ($app) {
             return $app->make(Collivery::class)->contact();
         });
 
+        $this->app->singleton(Country::class, function ($app) {
+            return $app->make(Collivery::class)->country();
+        });
         $this->app->singleton(LocationType::class, function ($app) {
             return $app->make(Collivery::class)->locationType();
         });
