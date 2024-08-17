@@ -15,6 +15,7 @@ use Rainwaves\Api\Status;
 use Rainwaves\Api\Suburb;
 use Rainwaves\Api\Vendor;
 use Rainwaves\Api\VendorReport;
+use Rainwaves\Api\VendorWaybill;
 use Rainwaves\Api\Waybill;
 use Rainwaves\Api\StatusTracking;
 use Rainwaves\Api\Auth;
@@ -206,6 +207,16 @@ class Collivery
     public function vendorReport(): VendorReport
     {
         return new VendorReport($this->httpClient, $this->auth);
+    }
+
+    /**
+     * Get an instance of the vendorWaybill service.
+     *
+     * @return vendorWaybill
+     */
+    public function vendorWaybill(): VendorWaybill
+    {
+        return new VendorWaybill($this->httpClient, $this->auth);
     }
 
     /**
