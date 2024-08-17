@@ -13,6 +13,7 @@ use Rainwaves\Api\PredifinedParcel;
 use Rainwaves\Api\ServiceType;
 use Rainwaves\Api\Status;
 use Rainwaves\Api\Suburb;
+use Rainwaves\Api\TermAndCondition;
 use Rainwaves\Api\Vendor;
 use Rainwaves\Api\VendorReport;
 use Rainwaves\Api\VendorWaybill;
@@ -187,6 +188,16 @@ class Collivery
     public function predifinedParcel(): PredifinedParcel
     {
         return new PredifinedParcel($this->httpClient, $this->auth);
+    }
+
+    /**
+     * Get an instance of the TermAndCondition service.
+     *
+     * @return TermAndCondition
+     */
+    public function termAndCondition(): TermAndCondition
+    {
+        return new TermAndCondition($this->httpClient, $this->auth);
     }
 
     /**

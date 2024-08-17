@@ -16,6 +16,7 @@ use Rainwaves\Api\ServiceType;
 use Rainwaves\Api\Status;
 use Rainwaves\Api\StatusTracking;
 use Rainwaves\Api\Suburb;
+use Rainwaves\Api\TermAndCondition;
 use Rainwaves\Api\Town;
 use Rainwaves\Api\Vendor;
 use Rainwaves\Api\VendorReport;
@@ -108,6 +109,10 @@ class ColliveryServiceProvider extends ServiceProvider
 
         $this->app->singleton(PredifinedParcel::class, function ($app) {
             return $app->make(Collivery::class)->predifinedParcel();
+        });
+
+        $this->app->singleton(TermAndCondition::class, function ($app) {
+            return $app->make(Collivery::class)->termAndCondition();
         });
 
         $this->app->singleton(Vendor::class, function ($app) {
