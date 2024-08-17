@@ -7,6 +7,7 @@ use Rainwaves\Api\Address;
 use Rainwaves\Api\Auth;
 use Rainwaves\Api\Contact;
 use Rainwaves\Api\Country;
+use Rainwaves\Api\PredifinedParcel;
 use Rainwaves\Api\Status;
 use Rainwaves\Api\StatusTracking;
 use Rainwaves\Api\Suburb;
@@ -74,6 +75,10 @@ class ColliveryServiceProvider extends ServiceProvider
 
         $this->app->singleton(Status::class, function ($app) {
             return $app->make(Collivery::class)->status();
+        });
+
+        $this->app->singleton(PredifinedParcel::class, function ($app) {
+            return $app->make(Collivery::class)->predifinedParcel();
         });
 
         $this->app->singleton(Auth::class, function ($app) {

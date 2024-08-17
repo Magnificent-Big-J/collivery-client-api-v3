@@ -5,6 +5,7 @@ namespace Rainwaves;
 use Rainwaves\Api\Address;
 use Rainwaves\Api\Contact;
 use Rainwaves\Api\Country;
+use Rainwaves\Api\PredifinedParcel;
 use Rainwaves\Api\Status;
 use Rainwaves\Api\Suburb;
 use Rainwaves\Api\Waybill;
@@ -128,6 +129,16 @@ class Collivery
     public function status(): Status
     {
         return new Status($this->httpClient, $this->auth);
+    }
+
+    /**
+     * Get an instance of the Status service.
+     *
+     * @return PredifinedParcel
+     */
+    public function predifinedParcel(): PredifinedParcel
+    {
+        return new PredifinedParcel($this->httpClient, $this->auth);
     }
     /**
      * Get the Auth instance.
