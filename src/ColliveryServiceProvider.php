@@ -7,6 +7,7 @@ use Rainwaves\Api\Address;
 use Rainwaves\Api\Auth;
 use Rainwaves\Api\Contact;
 use Rainwaves\Api\StatusTracking;
+use Rainwaves\Api\Suburb;
 use Rainwaves\Api\Town;
 use Rainwaves\Api\Waybill;
 use Rainwaves\Helpers\HttpClient;
@@ -59,6 +60,10 @@ class ColliveryServiceProvider extends ServiceProvider
 
         $this->app->singleton(Town::class, function ($app) {
             return $app->make(Collivery::class)->town();
+        });
+
+        $this->app->singleton(Suburb::class, function ($app) {
+            return $app->make(Collivery::class)->suburb();
         });
 
         $this->app->singleton(Auth::class, function ($app) {
