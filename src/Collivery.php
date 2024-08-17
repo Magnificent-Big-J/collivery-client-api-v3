@@ -13,6 +13,7 @@ use Rainwaves\Api\PredifinedParcel;
 use Rainwaves\Api\ServiceType;
 use Rainwaves\Api\Status;
 use Rainwaves\Api\Suburb;
+use Rainwaves\Api\Vendor;
 use Rainwaves\Api\Waybill;
 use Rainwaves\Api\StatusTracking;
 use Rainwaves\Api\Auth;
@@ -106,16 +107,6 @@ class Collivery
     }
 
     /**
-     * Get an instance of the Waybill service.
-     *
-     * @return Waybill
-     */
-    public function waybill(): Waybill
-    {
-        return new Waybill($this->httpClient, $this->auth);
-    }
-
-    /**
      * Get an instance of the StatusTracking service.
      *
      * @return StatusTracking
@@ -194,6 +185,28 @@ class Collivery
     {
         return new PredifinedParcel($this->httpClient, $this->auth);
     }
+
+    /**
+     * Get an instance of the Vendor service.
+     *
+     * @return Vendor
+     */
+
+    public function vendor(): Vendor
+    {
+        return new Vendor($this->httpClient, $this->auth);
+    }
+
+    /**
+     * Get an instance of the Waybill service.
+     *
+     * @return Waybill
+     */
+    public function waybill(): Waybill
+    {
+        return new Waybill($this->httpClient, $this->auth);
+    }
+
 
     /**
      * Get an instance of the Status service.
