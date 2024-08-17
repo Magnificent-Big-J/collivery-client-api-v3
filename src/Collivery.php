@@ -4,6 +4,7 @@ namespace Rainwaves;
 
 use Rainwaves\Api\Address;
 use Rainwaves\Api\Contact;
+use Rainwaves\Api\Country;
 use Rainwaves\Api\Status;
 use Rainwaves\Api\Suburb;
 use Rainwaves\Api\Waybill;
@@ -68,6 +69,17 @@ class Collivery
     }
 
     /**
+     * Get an instance of the Country service.
+     *
+     * @return Country
+     */
+    public function country(): Country
+    {
+        return new Country($this->httpClient, $this->auth);
+    }
+
+
+    /**
      * Get an instance of the Waybill service.
      *
      * @return Waybill
@@ -113,7 +125,7 @@ class Collivery
      *
      * @return Status
      */
-    public function Status(): Status
+    public function status(): Status
     {
         return new Status($this->httpClient, $this->auth);
     }

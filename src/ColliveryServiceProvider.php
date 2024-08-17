@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Rainwaves\Api\Address;
 use Rainwaves\Api\Auth;
 use Rainwaves\Api\Contact;
+use Rainwaves\Api\Country;
 use Rainwaves\Api\Status;
 use Rainwaves\Api\StatusTracking;
 use Rainwaves\Api\Suburb;
@@ -41,6 +42,10 @@ class ColliveryServiceProvider extends ServiceProvider
             ];
 
             return new Collivery($httpClient, $config);
+        });
+
+        $this->app->singleton(Country::class, function ($app) {
+            return $app->make(Collivery::class)->country();
         });
 
         $this->app->singleton(Address::class, function ($app) {

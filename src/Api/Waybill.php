@@ -2,7 +2,6 @@
 
 namespace Rainwaves\Api;
 
-use Rainwaves\Helpers\HttpClientInterface;
 use Rainwaves\Exceptions\ColliveryException;
 use Illuminate\Support\Facades\Cache;
 
