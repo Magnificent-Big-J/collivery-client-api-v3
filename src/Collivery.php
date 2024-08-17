@@ -7,6 +7,7 @@ use Rainwaves\Api\Contact;
 use Rainwaves\Api\Country;
 use Rainwaves\Api\LocationType;
 use Rainwaves\Api\ParcelImage;
+use Rainwaves\Api\ParcelType;
 use Rainwaves\Api\PredifinedParcel;
 use Rainwaves\Api\ServiceType;
 use Rainwaves\Api\Status;
@@ -164,6 +165,15 @@ class Collivery
         return new ParcelImage($this->httpClient, $this->auth);
     }
 
+    /**
+     * Get an instance of the parcelType service.
+     *
+     * @return parcelType
+     */
+    public function parcelType(): ParcelType
+    {
+        return new ParcelType($this->httpClient, $this->auth);
+    }
     /**
      * Get an instance of the Status service.
      *
