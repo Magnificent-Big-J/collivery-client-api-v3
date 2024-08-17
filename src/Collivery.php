@@ -12,6 +12,7 @@ use Rainwaves\Api\Waybill;
 use Rainwaves\Api\StatusTracking;
 use Rainwaves\Api\Auth;
 use Rainwaves\Api\Town;
+use Rainwaves\Api\WaybillDocument;
 use Rainwaves\Exceptions\ColliveryException;
 use Rainwaves\Interfaces\HttpClientInterface;
 
@@ -140,6 +141,17 @@ class Collivery
     {
         return new PredifinedParcel($this->httpClient, $this->auth);
     }
+
+    /**
+     * Get an instance of the Status service.
+     *
+     * @return waybillDocument
+     */
+    public function waybillDocument(): WaybillDocument
+    {
+        return new WaybillDocument($this->httpClient, $this->auth);
+    }
+
     /**
      * Get the Auth instance.
      *

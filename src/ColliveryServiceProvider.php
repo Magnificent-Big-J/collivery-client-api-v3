@@ -13,6 +13,7 @@ use Rainwaves\Api\StatusTracking;
 use Rainwaves\Api\Suburb;
 use Rainwaves\Api\Town;
 use Rainwaves\Api\Waybill;
+use Rainwaves\Api\WaybillDocument;
 use Rainwaves\Helpers\HttpClient;
 
 class ColliveryServiceProvider extends ServiceProvider
@@ -81,6 +82,9 @@ class ColliveryServiceProvider extends ServiceProvider
             return $app->make(Collivery::class)->predifinedParcel();
         });
 
+        $this->app->singleton(WaybillDocument::class, function ($app) {
+            return $app->make(Collivery::class)->waybillDocument();
+        });
         $this->app->singleton(Auth::class, function ($app) {
             return $app->make(Collivery::class)->auth();
         });
