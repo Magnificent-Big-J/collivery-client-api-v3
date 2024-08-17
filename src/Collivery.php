@@ -5,6 +5,7 @@ namespace Rainwaves;
 use Rainwaves\Api\Address;
 use Rainwaves\Api\Contact;
 use Rainwaves\Api\Country;
+use Rainwaves\Api\LocationType;
 use Rainwaves\Api\ParcelImage;
 use Rainwaves\Api\PredifinedParcel;
 use Rainwaves\Api\ServiceType;
@@ -82,6 +83,15 @@ class Collivery
         return new Country($this->httpClient, $this->auth);
     }
 
+    /**
+     * Get an instance of the locationType service.
+     *
+     * @return locationType
+     */
+    public function locationType(): LocationType
+    {
+        return new LocationType($this->httpClient, $this->auth);
+    }
 
     /**
      * Get an instance of the Waybill service.
