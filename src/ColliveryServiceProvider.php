@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Rainwaves\Api\Address;
 use Rainwaves\Api\Auth;
 use Rainwaves\Api\Contact;
+use Rainwaves\Api\Status;
 use Rainwaves\Api\StatusTracking;
 use Rainwaves\Api\Suburb;
 use Rainwaves\Api\Town;
@@ -64,6 +65,10 @@ class ColliveryServiceProvider extends ServiceProvider
 
         $this->app->singleton(Suburb::class, function ($app) {
             return $app->make(Collivery::class)->suburb();
+        });
+
+        $this->app->singleton(Status::class, function ($app) {
+            return $app->make(Collivery::class)->status();
         });
 
         $this->app->singleton(Auth::class, function ($app) {

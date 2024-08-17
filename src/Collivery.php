@@ -4,6 +4,7 @@ namespace Rainwaves;
 
 use Rainwaves\Api\Address;
 use Rainwaves\Api\Contact;
+use Rainwaves\Api\Status;
 use Rainwaves\Api\Suburb;
 use Rainwaves\Api\Waybill;
 use Rainwaves\Api\StatusTracking;
@@ -105,6 +106,16 @@ class Collivery
     public function suburb(): Suburb
     {
         return new Suburb($this->httpClient, $this->auth);
+    }
+
+    /**
+     * Get an instance of the Status service.
+     *
+     * @return Status
+     */
+    public function Status(): Status
+    {
+        return new Status($this->httpClient, $this->auth);
     }
     /**
      * Get the Auth instance.
