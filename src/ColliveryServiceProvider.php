@@ -22,6 +22,7 @@ use Rainwaves\Api\VendorReport;
 use Rainwaves\Api\VendorWaybill;
 use Rainwaves\Api\Waybill;
 use Rainwaves\Api\WaybillDocument;
+use Rainwaves\Api\WebPrinter;
 use Rainwaves\Helpers\HttpClient;
 
 class ColliveryServiceProvider extends ServiceProvider
@@ -123,6 +124,10 @@ class ColliveryServiceProvider extends ServiceProvider
 
         $this->app->singleton(WaybillDocument::class, function ($app) {
             return $app->make(Collivery::class)->waybillDocument();
+        });
+
+        $this->app->singleton(WebPrinter::class, function ($app) {
+            return $app->make(Collivery::class)->webPrinter();
         });
         $this->app->singleton(Auth::class, function ($app) {
             return $app->make(Collivery::class)->auth();
