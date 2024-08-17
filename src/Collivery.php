@@ -7,6 +7,7 @@ use Rainwaves\Api\Contact;
 use Rainwaves\Api\Country;
 use Rainwaves\Api\ParcelImage;
 use Rainwaves\Api\PredifinedParcel;
+use Rainwaves\Api\ServiceType;
 use Rainwaves\Api\Status;
 use Rainwaves\Api\Suburb;
 use Rainwaves\Api\Waybill;
@@ -112,6 +113,16 @@ class Collivery
         return new Town($this->httpClient, $this->auth);
     }
 
+    /**
+     * Get an instance of the ServiceType service.
+     *
+     * @return ServiceType
+     */
+
+    public function serviceType(): ServiceType
+    {
+        return new ServiceType($this->httpClient, $this->auth);
+    }
 
     /**
      * Get an instance of the Suburb service.
