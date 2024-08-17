@@ -5,6 +5,7 @@ namespace Rainwaves;
 use Rainwaves\Api\Address;
 use Rainwaves\Api\Contact;
 use Rainwaves\Api\Country;
+use Rainwaves\Api\ParcelImage;
 use Rainwaves\Api\PredifinedParcel;
 use Rainwaves\Api\Status;
 use Rainwaves\Api\Suburb;
@@ -130,6 +131,16 @@ class Collivery
     public function status(): Status
     {
         return new Status($this->httpClient, $this->auth);
+    }
+
+    /**
+     * Get an instance of the ParcelImage service.
+     *
+     * @return ParcelImage
+     */
+    public function parcelImage(): ParcelImage
+    {
+        return new ParcelImage($this->httpClient, $this->auth);
     }
 
     /**
